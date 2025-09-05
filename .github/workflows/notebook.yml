@@ -19,8 +19,9 @@ jobs:
 
       - name: Install Jupyter
         run: pip install nbconvert notebook
+
       - name: Execute notebook
         run: |
-          jupyter nbconvert --to notebook --execute SalesforcastPipeline.ipynb \
+          jupyter nbconvert --to notebook --execute SalesForecastPipeline.ipynb \
             --output executed_notebook.ipynb \
             --ExecutePreprocessor.timeout=600
