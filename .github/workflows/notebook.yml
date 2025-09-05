@@ -1,0 +1,26 @@
+name: Run Sales Forecast Notebook
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install Jupyter
+        run: pip install nbconvert notebook
+      - name: Execute notebook
+        run: |
+          jupyter nbconvert --to notebook --execute SalesforcastPipeline.ipynb \
+            --output executed_notebook.ipynb \
+            --ExecutePreprocessor.timeout=600
